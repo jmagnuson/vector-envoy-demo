@@ -1,0 +1,11 @@
+
+[sources.demo_logs]
+type = "demo_logs"
+format = "syslog"
+lines = [ "line1" ]
+
+
+[sinks.cloud_vector]
+type = "vector"
+inputs = [ "demo_logs" ]
+address = "client-envoy:9911"

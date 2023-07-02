@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.24.0
+    container_name: client-envoy
+    environment:
+      - "ENVOY_UID=0"
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    networks:
+      - obs-pipeline
+
+  vector:
+    image: timberio/vector:0.30.X-alpine
+    container_name: client-vector
+    command: ["--config", "/etc/vector/*.toml", "--watch-config"]
+    volumes:
+      - ./vector.toml:/etc/vector/vector.toml:ro
+    networks:
+      - obs-pipeline
+
+networks:
+  obs-pipeline:
+    name: obs-pipeline
