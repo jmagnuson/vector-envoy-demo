@@ -23,7 +23,7 @@ static_resources:
               - "*"
               routes:
               - match:
-                  prefix: "/"
+                  prefix: "/vector.Vector/"
                   grpc: {}
                 route:
                   cluster: vector
